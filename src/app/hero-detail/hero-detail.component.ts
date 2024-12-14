@@ -19,5 +19,5 @@ import {
   ]
 })
 export class HeroDetailComponent {
- @Input() hero: Hero | undefined;
+ @Input() hero?: Hero;
 }
