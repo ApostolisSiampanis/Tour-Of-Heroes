@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {HEROES} from '../mock-heroes';
 import {Hero} from '../hero';
 import {HeroDetailComponent} from '../hero-detail/hero-detail.component';
+import { HeroService } from '../hero.service';
 
 import {
   NgFor,
@@ -20,10 +21,23 @@ import {
   ]
 })
 export class HeroesComponent {
-  heroes = HEROES;
+  heroes: Hero[] = [];
+
+  constructor(private heroService: HeroService) {}
+
+  getHeroes(): void {
+    this.heroes = this.heroService.getHeroes();
+  }
+
+  ngOnInit() {
+    this.getHeroes();
+  }
+
   selectedHero?: Hero;
 
   onSelect(hero: Hero): void {
   this.selectedHero = hero;
+
+  
 }
 }
